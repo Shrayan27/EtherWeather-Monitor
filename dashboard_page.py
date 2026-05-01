@@ -39,7 +39,7 @@ class SensorWorker(QThread):
                         self.data_ready.emit(data)
             except Exception as e:
                 print(f"[SensorWorker] Error: {e}")
-            self.msleep(1000)
+            self.msleep(100)
 
     def stop(self):
         self._running = False
