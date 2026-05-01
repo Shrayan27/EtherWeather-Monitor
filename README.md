@@ -463,7 +463,7 @@ MIT
 
 # Author
 
-Your Name  
+Shrayan  
 Industrial Automation / Modbus / Embedded Systems
 
 ---
