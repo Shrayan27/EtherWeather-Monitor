@@ -1,6 +1,11 @@
 import sys
 import os
 
+if os.name == 'nt':
+    import ctypes
+    myappid = 'kbsensormart.weatherstation.gui.1.0'
+    ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
+
 
 def resource_path(relative_path):
     """Get absolute path to resource — works for dev and PyInstaller EXE."""
@@ -68,7 +73,7 @@ class SetUpPage(QWidget):
     def connect_device(self):
         host    = self.ip_input.text().strip()
         port    = int(self.port_input.text().strip()) if self.port_input.text().strip() else 4196
-        address = int(self.address_input.text().strip()) if self.address_input.text().strip() else 5
+        address = int(self.address_input.text().strip()) if self.address_input.text().strip() else 1
 
         print(f"Connecting to {host}:{port}, Modbus address {address}")
 
@@ -216,6 +221,7 @@ class SetUpPage(QWidget):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
+    app.setWindowIcon(QIcon(resource_path("favicon.png")))
     window = SetUpPage()
     window.show()
     sys.exit(app.exec())
